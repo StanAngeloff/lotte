@@ -57,6 +57,11 @@ var defaults = optimist.
         default:     'phantomjs',
         description: 'executable for PhantomJS'
       }).
+      option('coffee', {
+        type:        'string',
+        default:     'coffee',
+        description: 'executable for CofeeScript'
+      }).
       option('mktemp', {
         type:        'string',
         default:     'mktemp',

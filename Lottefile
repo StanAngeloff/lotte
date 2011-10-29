@@ -1,2 +1,2 @@
 path    = 'example';
-include = '**/*.js'
+include = '**/*.coffee'
