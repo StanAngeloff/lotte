@@ -16,7 +16,7 @@ TaskQuery.prototype.first = function TaskQuery_first(block) {
     return _elements.length; \
   '));
   if ( ! hasElements) {
-    this._task.assert.fail(hasElements, true, this._message || ('expected at least one element: ' + this._query), this.first);
+    return this._task.assert.fail(hasElements, true, this._message || ('expected at least one element: ' + this._query), this.first);
   }
 };
 

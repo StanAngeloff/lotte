@@ -9,7 +9,10 @@ var ANSI_STYLES = {
   'bold':      1,
   'underline': 4,
   'red':       31,
+  'green':     32,
   'yellow':    33,
+  'magenta':   35,
+  'white':     37
 };
 
 var _webpage = require('webpage'),
@@ -45,12 +48,16 @@ this.absolute = function absolute(uri) {
   return uri;
 };
 
-this.open = function open(uri, block) {
+this.open = function open(uri, message, block) {
   var page = _webpage.create();
   uri = absolute(uri);
+  if (arguments.length < 3) {
+    block   = message;
+    message = void 0;
+  }
   page.open(uri, function(status) {
     if (status === STATUS_SUCCESS) {
-      var child = new TestPage(page);
+      var child = new TestPage(page, message || uri);
       _pages.push(child);
       block.call(child);
       child._process();
@@ -66,7 +73,28 @@ this.open = function open(uri, block) {
 function _indent(level) {
   var args = Array.prototype.slice.call(arguments, 1),
       padd = Array(level + 1).join(PADDING);
-  console.log(padd + args.join(' ').replace('\n', '\n' + padd, 'g'));
+  return (padd + args.join(' ').replace('\n', '\n' + padd, 'g'));
+};
+
+function _style(type) {
+  switch (type) {
+    case 'page', 'group': return ansiStyle('white');
+    case STATUS_SUCCESS:  return ansiStyle('green');
+    case STATUS_FAIL:     return ansiStyle('red');
+    case STATUS_SKIPED:   return ansiStyle('magenta');
+  }
+  return '';
+};
+
+function _symbol(type) {
+  switch (type) {
+    case 'page':          return '@ ';
+    case 'group':         return '– ';
+    case STATUS_SUCCESS:  return '✓ ';
+    case STATUS_FAIL:     return '✗ ';
+    case STATUS_SKIPED:   return '- ';
+  }
+  return '';
 };
 
 function _extend(parent) {
@@ -76,8 +104,9 @@ function _extend(parent) {
 };
 
 
-function TestPage(page) {
+function TestPage(page, uri) {
   this._page      = page;
+  this._uri       = uri;
   this._parent    = null;
   this._children  = [];
   this._skip      = false;
@@ -132,12 +161,13 @@ TestPage.prototype._process = function TestPage_process() {
   });
 };
 
-TestPage.prototype._complete = function TestPage_complete(child, status) {
+TestPage.prototype._complete = function TestPage_complete(child, status, message) {
   if (child._completed) {
     return child._completed;
   }
   child._completed = true;
   child._status    = status;
+  child._message   = message;
   this._tasks      = this._tasks - 1;
   if (child._status === STATUS_FAIL) {
     this._skip = true;
@@ -148,9 +178,27 @@ TestPage.prototype._complete = function TestPage_complete(child, status) {
     remaining = remaining + this._tasks;
   });
   if (remaining <= 0) {
-    // TODO: print tree
     _waiting = _waiting - 1;
   }
+};
+
+TestPage.prototype._level = function TestPage_level() {
+  var level = 0;
+  this._ascend(function() {
+    level = level + 1;
+  });
+  return level;
+};
+
+TestPage.prototype._indent = function TestPage_indent() {
+  return _indent.apply(this, [this._level()].concat(Array.prototype.slice.call(arguments)));
+};
+
+TestPage.prototype._print = function TestPage_print() {
+  console.log(this._indent(_style('page') + _symbol('page') + ansiStyle('bold') + this._uri + ansiStyle('reset')));
+  this._children.forEach(function(child) {
+    child._print();
+  });
 };
 
 
@@ -163,11 +211,19 @@ function TestGroup(name, parent) {
 
 TestGroup.prototype = _extend(TestPage);
 
+TestGroup.prototype._print = function TestGroup_print() {
+  console.log(this._indent(level, _style('group') + _symbol('group') + ansiStyle('bold') + this._name + ansiStyle('reset')));
+  this._children.forEach(function(child) {
+    child._print();
+  });
+};
+
 
 function TestTask(name, parent, block) {
   TestGroup.apply(this, arguments);
   this._completed = false;
   this._status    = null;
+  this._message   = null;
   this._block     = block;
   this._bindAssert();
   this._bindUtils();
@@ -175,6 +231,13 @@ function TestTask(name, parent, block) {
 };
 
 TestTask.prototype = _extend(TestGroup);
+
+TestTask.prototype._print = function TestTask_print() {
+  console.log(this._indent(_style(this._status) + _symbol(this._status) + this._name + ansiStyle('reset')));
+  if (this._status === STATUS_FAIL) {
+    console.log(_indent(this._level() + 1, _style(this._status) + this._message + ansiStyle('reset')));
+  }
+};
 
 TestTask.prototype._bindAssert = function TestTask_bindAssert() {
   var self = this;
@@ -186,7 +249,7 @@ TestTask.prototype._bindAssert = function TestTask_bindAssert() {
           try {
             _assert[key].apply(_assert, arguments);
           } catch (e) {
-            self._complete(STATUS_FAIL);
+            self._complete(STATUS_FAIL, e.toString());
           }
         };
       })(key);
@@ -219,8 +282,8 @@ TestTask.prototype._process = function TestTask_process() {
   }
 };
 
-TestTask.prototype._complete = function TestTask_complete(status) {
-  this._parent._complete(this, status);
+TestTask.prototype._complete = function TestTask_complete(status, message) {
+  this._parent._complete(this, status, message);
 };
 
 TestTask.prototype.success = function TestTask_success() {
