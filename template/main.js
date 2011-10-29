@@ -1,5 +1,1 @@
-// main.js
-
-// ${FILE}
-
 ${CODE}
