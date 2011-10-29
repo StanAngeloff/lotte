@@ -1,0 +1,5 @@
+// main.js
+
+// ${FILE}
+
+${CODE}

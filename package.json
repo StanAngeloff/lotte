@@ -1,0 +1,29 @@
+{ "name":        "lotte",
+  "version":     "0.0.1",
+  "description": "Headless, automated browser testing using PhantomJS",
+  "homepage":    "https://github.com/StanAngeloff/lotte",
+  "bugs":        "https://github.com/StanAngeloff/lotte/issues",
+  "author": {
+    "name":  "Stan Angeloff",
+    "email": "stanimir@angeloff.name",
+    "url":   "http://blog.angeloff.name"
+  },
+  "files": ["./bin", "./lib/", "./template"],
+  "bin":   "./bin/cli.js",
+  "main":  "./lib/lotte.js",
+  "repository": {
+    "type": "git",
+    "url":  "https://github.com/StanAngeloff/lotte"
+  },
+  "dependencies": {
+    "findit":      "~0.1.1",
+    "minimatch":   "~0.0.4",
+    "naturalsort": "~0.0.1",
+    "optimist":    "~0.2.8",
+    "semver":      "~1.0.10"
+  },
+  "engines": {
+    "node": "~0.4.10"
+  },
+  "preferGlobal": true
+}

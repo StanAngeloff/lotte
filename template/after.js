@@ -1,0 +1,3 @@
+// after.js
+
+phantom.exit();
