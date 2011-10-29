@@ -13,8 +13,9 @@ var ANSI_STYLES = {
 };
 
 var _webpage = require('webpage'),
-    _assert  = {},
+    _pages   = [],
     _waiting = 0,
+    _assert  = {},
     _failed, _title, _baseUri;
 
 this.ansiStyle = function ansiStyle(key) {
@@ -25,7 +26,6 @@ this.title = function title(name) {
   var previous = _title;
   if (arguments.length) {
     _title = name;
-    console.log(ansiStyle('bold') + ansiStyle('underline') + _title + ansiStyle('reset'));
   }
   return previous;
 };
@@ -51,6 +51,7 @@ this.open = function open(uri, block) {
   page.open(uri, function(status) {
     if (status === STATUS_SUCCESS) {
       var child = new TestPage(page);
+      _pages.push(child);
       block.call(child);
       child._process();
     } else {
@@ -94,6 +95,7 @@ function TestPage(page) {
     var page = this.top;
     return (page && page._page);
   });
+  return this;
 };
 
 TestPage.prototype.group = function TestPage_group(name, block) {
@@ -156,6 +158,7 @@ function TestGroup(name, parent) {
   TestPage.call(this);
   this._name   = name;
   this._parent = parent;
+  return this;
 };
 
 TestGroup.prototype = _extend(TestPage);
@@ -167,6 +170,8 @@ function TestTask(name, parent, block) {
   this._status    = null;
   this._block     = block;
   this._bindAssert();
+  this._bindUtils();
+  return this;
 };
 
 TestTask.prototype = _extend(TestGroup);
@@ -187,6 +192,17 @@ TestTask.prototype._bindAssert = function TestTask_bindAssert() {
       })(key);
     }
   }
+};
+
+TestTask.prototype._bindUtils = function TestTask_bindUtils() {
+  var page = this.page;
+  this.$ = function(query, message) {
+    return (function(klass, args) {
+      var child = function() { };
+      child.prototype = klass.prototype;
+      return klass.apply(new child(), args);
+    })(TaskQuery, [this, page].concat(Array.prototype.slice.call(arguments)));
+  };
 };
 
 TestTask.prototype._process = function TestTask_process() {

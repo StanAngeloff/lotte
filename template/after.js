@@ -1,5 +1,7 @@
 setInterval(function() {
   if (_waiting <= 0) {
+    console.log(ansiStyle('bold') + ansiStyle('underline') + _title + ansiStyle('reset'));
+    // TODO: print all
     phantom.exit(_failed ? 1 : 0);
   }
 }, 125);
