@@ -2,8 +2,8 @@
 
 const PHANTOMJS_VERSION = '~1.3.0';
 
-var optimist = require('optimist'),
-    path     = require('path'),
+var path     = require('path'),
+    optimist = require('optimist'),
     console  = require('../lib/console');
 
 var defaults = optimist.
@@ -167,9 +167,7 @@ function collect(options, resume) {
     var find   = require('findit').find(options.path),
         result = [];
     find.on('file', function(file) {
-      if (result.indexOf(file) < 0) {
-        result.push(file);
-      }
+      result.push(file);
     });
     find.on('error', function(e) {
       console.warn(e.toString().trim());
