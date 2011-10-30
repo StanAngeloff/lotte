@@ -1,2 +1,4 @@
-path    = 'example';
-include = '**/*.coffee'
+path       = 'example'
+include    = '**/*.coffee'
+timeout    = 5000
+concurrent = 1
