@@ -1,4 +1,4 @@
 path       = 'test'
 include    = '**/test_*.coffee'
 timeout    = 5000
-concurrent = 1
+concurrent = 2
