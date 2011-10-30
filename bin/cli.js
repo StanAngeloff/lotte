@@ -78,10 +78,10 @@ if (defaults.version) {
   process.exit(0);
 }
 
-defaults.path = path.resolve((defaults._.length && defaults._.shift()) || process.env['LOTTE_PATH'] || process.cwd());
-if (defaults._.length) {
-  console.warn("ignoring extra arguments: '%s'.", defaults._);
+if (process.argv.indexOf('--') < 0) {
+  defaults.path = path.resolve((defaults._.length && defaults._.shift()) || process.env['LOTTE_PATH'] || process.cwd());
 }
+
 var lotteFile = path.join(defaults.path, defaults.lottefile);
 path.exists(lotteFile, function(exists) {
   if (exists) {
