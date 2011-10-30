@@ -3,20 +3,20 @@
 
 @open '/signup', 'Sign Up', ->
   @describe 'Referral and company tick boxes exist', ->
-    @$('[name="has-referral"]', 'expect referral tick box').first (element) -> element.type is 'checkbox'
-    @$('[name="has-company"]', 'expect company tick box').first   (element) -> element.type is 'checkbox'
+    @$('[name="has-referral"]').first 'expect referral tick box', (element) -> element.type is 'checkbox'
+    @$('[name="has-company"]').first 'expect company tick box',   (element) -> element.type is 'checkbox'
     @success()
   @describe 'Company name and ID boxes exist', ->
-    @$('[name="referral"]', 'expect referral input box').first    (element) -> element.type is 'text'
-    @$('[name="company"]', 'expect company name input box').first (element) -> element.type is 'text'
-    @$('[name="company_id"]', 'expect ID input box').first        (element) -> element.type is 'text'
+    @$('[name="referral"]').first 'expect referral input box',    (element) -> element.type is 'text'
+    @$('[name="company"]').first 'expect company name input box', (element) -> element.type is 'text'
+    @$('[name="company_id"]').first 'expect ID input box',        (element) -> element.type is 'text'
     @success()
   @describe 'Company name and ID are mandatory only when selected', ->
-    @$('[name="has-company"]', 'expect company tick box to be unselected').first (element) -> not element.checked
-    @$('[name="company"], [name="company_id"]', 'no errors on start up').every   (element) -> not element.classList.contains('with-error')
+    @$('[name="has-company"]').first 'expect company tick box to be unselected', (element) -> not element.checked
+    @$('[name="company"], [name="company_id"]').every 'no errors on start up',   (element) -> not element.classList.contains('with-error')
     @$('[name="apply"]').click()
-    @$('[name="company"], [name="company_id"]', 'no errors when option not selected').every (element) -> not element.classList.contains('with-error')
+    @$('[name="company"], [name="company_id"]').every 'no errors when option not selected', (element) -> not element.classList.contains('with-error')
     @$('[name="has-company"]').click()
     @$('[name="apply"]').click()
-    @$('[name="company"], [name="company_id"]', 'expect errors when option selected and submitted').every (element) -> element.classList.contains('with-error')
+    @$('[name="company"], [name="company_id"]').every 'expect errors when option selected and submitted', (element) -> element.classList.contains('with-error')
     @success()
