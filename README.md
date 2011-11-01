@@ -15,11 +15,9 @@ Most of the everyday testing needs, e.g., mouse and keyboard input, will be avai
 
 Lotte is highly experimental. Using this software may cause your computer to blow up. Seriously.
 
-
-    [ghostbuster]: https://github.com/joshbuddy/ghostbuster
-    [phantom]:     http://www.phantomjs.org/
-    [coffee]:      http://coffeescript.org/
-
+  [ghostbuster]: https://github.com/joshbuddy/ghostbuster
+  [phantom]:     http://www.phantomjs.org/
+  [coffee]:      http://coffeescript.org/
 
 Installation
 ------------
@@ -34,9 +32,7 @@ $ npm link .
 
 This will make the `lotte` script available from any directory (given you have configured the `npm` binary path to be on your `$PATH`).
 
-
-    [npm]: http://npmjs.org/
-
+  [npm]: http://npmjs.org/
 
 Command-Line Options
 --------------------
@@ -97,9 +93,7 @@ Lotte does not come bundled with a compiler and it will shell-out to the system 
 
 Use `--coffee` if your `coffee` binary is not on `$PATH`.
 
-
-    [test]: https://github.com/StanAngeloff/lotte/tree/master/test
-
+  [test]: https://github.com/StanAngeloff/lotte/tree/master/test
 
 Contributing
 ------------
@@ -113,7 +107,4 @@ Commit and code reviews, ideas and wish-lists are welcomed.
 
 ### Copyright
 
-> Copyright (c) 2011 Stan Angeloff. See [LICENSE.md][licence] for details.
-
-
-    [license]: https://github.com/StanAngeloff/lotte/blob/master/LICENSE.md
+> Copyright (c) 2011 Stan Angeloff. See [LICENSE.md](https://github.com/StanAngeloff/lotte/blob/master/LICENSE.md) for details.
