@@ -10,6 +10,6 @@
   @describe 'wait(..) blocks until dependencies met', ->
     @wait 'should follow anchors', ->
       @$('h1').contains 'expects Page 2 in heading', /\bpage 2\b/i
-      @$('a').click ->
+      @$('a').mouse type: 'click', ->
         @$('h1').contains 'expects Page 1 in heading', /\bpage 1\b/i
         @success()
