@@ -2,9 +2,9 @@
 @title 'localhost.localdomain'
 
 @open '/', 'basics', ->
-  @describe 'html(..) supports regular expressions', ->
+  @describe 'contains(..) supports regular expressions', ->
     @assert.ok @$('h1').length, 'expects a <h1> to be in the DOM'
-    @$('h1').html 'expects project name in heading', /\bLotte\b/
+    @$('h1').contains 'expects project name in heading', /\bLotte\b/
     @success()
   @describe 'each(..) iterates over all elements', ->
     @assert.equal @$('p').length, 2, 'expects two paragraphs'
@@ -22,7 +22,7 @@
     @success()
   @describe 'click(..) sends events correctly', ->
     @$('button')
-      .html('expects button to be in inital state', 'Click me!')
+      .contains('expects button to be in inital state', 'Click me!')
       .click()
-      .html('expects button to be in final state', 'You clicked me!')
+      .contains('expects button to be in final state', 'You clicked me!')
     @success()
