@@ -17,7 +17,7 @@
     @assert.equal @$('dt').title, 'Term 1', 'expects Term 1'
     @assert.equal @$('dd').innerHTML, 'Description 1', 'expects Description 1'
     @success()
-  @describe 'proxy(..) can extend available properties', ->
+  @describe 'passthru(..) can extend available properties', ->
     @assert.equal @$('p').custom, undefined, 'expects undefined property before proxying'
-    @assert.equal @$('p').proxy('custom').custom, 'Custom Value', 'expects value to be available after proxying'
+    @assert.equal @$('p').passthru('custom').custom, 'Custom Value', 'expects value to be available after proxying'
     @success()
