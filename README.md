@@ -149,7 +149,7 @@ The code below combines all functions:
 @base  'http://local.dev'
 @title 'Sign up page'
 
-@open 'http://local.dev/signup', 'Sign up without JavaScript', settings: javascriptEnabled: no, ->
+@open '/signup', 'Sign up without JavaScript', settings: javascriptEnabled: no, ->
   [...]
 ```
 
