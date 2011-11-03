@@ -12,6 +12,7 @@
   @describe 'can access any element properties', ->
     @assert.equal @$('dt').attr(1, 'innerHTML'), 'Term 2', 'expects Term 2'
     @assert.equal @$('dd').attr(2, 'innerHTML'), 'Description 3', 'expects Description 3'
+    @assert.equal @$('dd').attr(99, 'innerHTML'), undefined, 'expects undefined for out-of-bounds index'
     @success()
   @describe 'property access accesses first element properties', ->
     @assert.equal @$('dt').title, 'Term 1', 'expects Term 1'
