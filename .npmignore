@@ -1,5 +1,6 @@
 ~*
 .*.pid
+.*ignore
 lotte-*.tgz
 node_modules
 npm-*.log
