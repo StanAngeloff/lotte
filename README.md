@@ -87,21 +87,21 @@ Options:
 
 There are four key options you would want to customise while the rest should work with their defaults.
 
-- `--concurrent, -c`
+- **`--concurrent, -c`**
 
     If you have more than one test file in a directory, Lotte will attempt to run them in parallel (asynchronously).
     You can specify how many tests can be running at any given time through this option.
 
     If you want to run tests synchronously, specify a value of `1`.
 
-- `--timeout, -t`
+- **`--timeout, -t`**
 
     Each test is expected to finish within a given period of time. If a test takes longer, it is interruped and recorded as failed.
 
     The default value is `30` seconds, but you should consider reducing it.
 
-- `--include, -I`  
-  `--exclude, -E`
+- **`--include, -I`  
+  `--exclude, -E`**
 
     When you run `lotte` from any directory the script collects a list of all files in the current directory and all sub-directories.
     The list is reduced by running the `include` glob pattern and dropping any files that did not match.
@@ -122,7 +122,7 @@ $ lotte --include '**/*.coffee' --include '**/*.js' --concurrent 1 tests
 
 can be stored in a `Lottefile` as this:
 
-```
+```javascript
 path       = 'tests'
 include    = ['**/*.coffee', '**/*.js']
 concurrent = 1
@@ -140,7 +140,7 @@ Arguments ending in `...` can be used more than once.
 
 At the top-level, the following functions are available:
 
-- `@title([name])`
+- **`@title([name])`**
 
     Gets or sets the test title.
     This is useful for giving meaningful names to your tests.
@@ -150,7 +150,7 @@ At the top-level, the following functions are available:
 
     If you don't explicitly specify a title, the filename will be used instead.
 
-- `@base([uri])`
+- **`@base([uri])`**
 
     Gets or sets the absolute URI for all relative URIs in the test.
     You can use this to specify the root URI for your project.
@@ -160,7 +160,7 @@ At the top-level, the following functions are available:
 
     If you don't explicitly specify an absolute URI, all calls to `@open` will expect an absolute URI instead.
 
-- `@open(uri, [message], [options], block)`
+- **`@open(uri, [message], [options], block)`**
 
     Creates a new test.
 
@@ -191,14 +191,14 @@ Once you have successfully requested an URI, you can start writing test cases ag
 
 The following functions are available:
 
-- `@group(name, block)`
+- **`@group(name, block)`**
 
     Groups the nested test cases. This is mainly for structuring the output Lotte prints.
 
     `name` is the name of the group.  
     `block` is a function which contains the nested test cases.
 
-- `@describe(name, block)`
+- **`@describe(name, block)`**
 
     Starts a new test case.
 
@@ -252,7 +252,7 @@ If a test case fails, any remaining test cases are skipped:
 
 To simulate dependencies and control the flow of execution, you can use the following functions:
 
-- `@wait(name..., block)`
+- **`@wait(name..., block)`**
 
     Blocks the current test case until all dependencies have finished (either passed or failed).
 
@@ -305,7 +305,7 @@ Objects are serialized before they leave the page sandbox and unserialized back 
 
 To work around those limitations and to abstract the boilerplate needed to access the DOM of a page, Lotte comes with a jQuery-like query function:
 
-- `@$(selector)`
+- **`@$(selector)`**
 
     `selector` is a string containing a selector expression.
 
@@ -327,7 +327,7 @@ The earlier example can now be rewritten as follows:
 
 A `DocumentQuery` object has the following methods to deal with the DOM:
 
-- `DocumentQuery.prototype.attr([index], property)`
+- **`DocumentQuery.prototype.attr([index], property)`**
 
     Gets the value of `property` for the element at `index`.
 
@@ -342,7 +342,7 @@ A `DocumentQuery` object has the following methods to deal with the DOM:
 
     While you can use `attr(..)` to access any property, the direct access will only work with the following pre-defined list of properties: `action`, `alt`, `checked`, `className`, `clientHeight`, `clientLeft`, `clientTop`, `clientWidth`, `disabled`, `enctype`, `height`, `href`, `id`, `innerHTML`, `length`, `maxLength`, `media`, `method`, `name`, `nodeName`, `nodeValue`, `offsetHeight`, `offsetLeft`, `offsetTop`, `offsetWidth`, `options`, `outerHTML`, `outerText`, `readOnly`, `rel`, `scrollHeight`, `scrollLeft`, `scrollTop`, `scrollWidth`, `selectedIndex`, `size`, `src`, `style`, `tagName`, `target`, `textContent`, `title`, `type`, `value`, `width`.
 
-- `DocumentQuery.prototype.click([index], [message], [block])`
+- **`DocumentQuery.prototype.click([index], [message], [block])`**
 
     Clicks on the element at `index` and returns execution to the test case (i.e., asynchronous). This method can be used to simulate mouse input.
 
@@ -361,7 +361,7 @@ A `DocumentQuery` object has the following methods to deal with the DOM:
           throw 'exit'
     ```
 
-- `DocumentQuery.prototype.input(value, [index], [message])`
+- **`DocumentQuery.prototype.input(value, [index], [message])`**
 
     Inputs `value` in the element at `index`. This method can be used to simulate keyboard input.
 
@@ -391,47 +391,47 @@ Lotte comes with two types of assertion logic:
 
 If you have used Node's built-in [assert][assert] module, these functions will be familiar:
 
-- `@assert.fail(actual, expected, message, operator)`
+- **`@assert.fail(actual, expected, message, operator)`**
 
     Throws an exception that displays the values for `actual` and `expected` separated by the provided `operator`.
 
-- `@assert.ok(value, message)`
+- **`@assert.ok(value, message)`**
 
     Tests if `value` is a true value, it is equivalent to `@assert.equal(true, value, message)`.
 
-- `@assert.equal(actual, expected, message)`
+- **`@assert.equal(actual, expected, message)`**
 
     Tests shallow, coercive equality with the equal comparison operator `==`.
 
-- `@assert.notEqual(actual, expected, message)`
+- **`@assert.notEqual(actual, expected, message)`**
 
     Tests shallow, coercive non-equality with the not equal comparison operator `!=`.
 
-- `@assert.deepEqual(actual, expected, message)`
+- **`@assert.deepEqual(actual, expected, message)`**
 
     Tests for deep equality.
 
-- `@assert.notDeepEqual(actual, expected, message)`
+- **`@assert.notDeepEqual(actual, expected, message)`**
 
     Tests for any deep inequality.
 
-- `@assert.strictEqual(actual, expected, message)`
+- **`@assert.strictEqual(actual, expected, message)`**
 
     Tests strict equality, as determined by the strict equality operator `===`.
 
-- `@assert.notStrictEqua(actual, expected, message)`
+- **`@assert.notStrictEqua(actual, expected, message)`**
 
     Tests strict non-equality, as determined by the strict not equal operator `!==`.
 
-- `@assert.throws(block, error, message)`
+- **`@assert.throws(block, error, message)`**
 
     Expects `block` to throw an error. `error` can be constructor, RegExp or validation function.
 
-- `@assert.doesNotThrow(block, error, message)`
+- **`@assert.doesNotThrow(block, error, message)`**
 
     Expects `block` not to throw an error, see `@assert.throws` for details.
 
-- `@assert.contains(actual, expected, message)`
+- **`@assert.contains(actual, expected, message)`**
 
     Expects `actual` to contain `expected`. `expected` can be a string or a RegExp.
 
@@ -441,23 +441,23 @@ If you have used Node's built-in [assert][assert] module, these functions will b
 
 `DocumentQuery` (see above) comes with additional methods to deal with assertions:
 
-- `DocumentQuery.prototype.contains([message], pattern)`
+- **`DocumentQuery.prototype.contains([message], pattern)`**
 
     Expects at least one of the matched elements to contain `pattern`. `pattern` can be a string or a RegExp.
 
-- `DocumentQuery.prototype.each([message], block)`
+- **`DocumentQuery.prototype.each([message], block)`**
 
     Tests if calling `block` on each matched element as an argument returns a true value.
 
-- `DocumentQuery.prototype.first([message], block)`
+- **`DocumentQuery.prototype.first([message], block)`**
 
     Tests if calling `block` with the first matched element as an argument returns a true value.
 
-- `DocumentQuery.prototype.last([message], block)`
+- **`DocumentQuery.prototype.last([message], block)`**
 
     Tests if calling `block` with the last matched element as an argument returns a true value.
 
-- `DocumentQuery.prototype.nth(index, [message], block)`
+- **`DocumentQuery.prototype.nth(index, [message], block)`**
 
     Tests if calling `block` with the element at `index` as an argument returns a true value.
 
@@ -478,7 +478,7 @@ Passing Tests
 
 So far we have ended tests with `throw 'exit'`. To pass a test case, use the following functions:
 
-- `@success()`
+- **`@success()`**
 
     Marks the test case as passed. You must call this once within each `@describe` block.
 
