@@ -28,7 +28,7 @@ var defaults = optimist.
         alias:       't',
         default:     30 * 1000,
         type:        'number',
-        description: 'timeout for individual files (in seconds)'
+        description: 'timeout for individual files (in milliseconds)'
       }).
       option('include', {
         alias:       'I',
