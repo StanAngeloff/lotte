@@ -26,7 +26,7 @@
     "express": "~2.5.0"
   },
   "engines": {
-    "node": "~0.4.10"
+    "node": ">=0.4.10"
   },
   "preferGlobal": true
 }

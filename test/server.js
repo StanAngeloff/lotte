@@ -15,11 +15,11 @@ function basic_auth (request, response, next) {
       return next();
     }
   }
-  response.header('WWW-Authenticate', 'Basic realm="Secret"');
+  response.writeHead(401, { 'WWW-Authenticate': 'Basic realm="Secret"' });
   if (request.headers.authorization) {
-    response.end('Authentication required', 401);
+    response.end('Authentication required');
   } else {
-    response.send('Authentication required', 401);
+    response.end('Authentication required');
   }
 };
 
