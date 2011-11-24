@@ -186,7 +186,7 @@ function glob(files, options, resume) {
   Array.isArray(options.pattern) || (options.pattern = [options.pattern]);
   options.pattern.forEach(function(pattern) {
     result = result.filter(function(file) {
-      return (minimatch(file, path.normalize(pattern || '')) ^ exclude);
+      return (minimatch(file, path.normalize(pattern || '').replace(/\\/g, '/')) ^ exclude);
     });
   });
   resume(result);
