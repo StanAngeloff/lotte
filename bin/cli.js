@@ -74,7 +74,7 @@ if (defaults.help) {
   process.exit(0);
 }
 if (defaults.version) {
-  console.log('%s %s', defaults.$0, '0.1.1');
+  console.log('%s %s', defaults.$0, '0.1.2');
   process.exit(0);
 }
 
