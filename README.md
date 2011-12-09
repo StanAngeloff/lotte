@@ -301,9 +301,32 @@ Objects are serialized before they leave the page sandbox and unserialized back 
     throw 'exit'
 ```
 
+Lotte comes with a workaround which allows you to pass variables to the PhantomJS environment.
+This hack has the same limitations as outlined above (it uses `JSON.stringify` internally):
+
+- **`@using(hash, block)`**
+
+    `hash` is a `key: value` object where:
+
+      - `key` must be a valid identifier and defines the name of the variable within the PhantomJS environment
+      - `value` must be serializable and contains the value of the variable
+
+    `block` is either a function or a string.
+
+    Returns a `Function` string with all `key: value` pairs from `hash` as arguments.
+
+```coffeescript
+@open 'https://github.com', ->
+  @describe '@using(..)', ->
+    expected = 'git'
+    @$('h2').first @using { expected }, (element) -> element.innerHTML.indexOf(expected) is 0
+    throw 'exit'
+```
+
 #### Document Queries
 
-To work around those limitations and to abstract the boilerplate needed to access the DOM of a page, Lotte comes with a jQuery-like query function:
+There is a lot of boilerplate code required to access the DOM of a page.
+Lotte comes with a jQuery-like query function to abstract some of the most common operations:
 
 - **`@$(selector)`**
 
