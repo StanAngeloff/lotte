@@ -52,6 +52,23 @@ var defaults = optimist.
         default:     ( ! process.env['LOTTE_NO_VERIFY']),
         description: "verify PhantomJS version (expected " + PHANTOMJS_VERSION + ")"
       }).
+      option('server', {
+        type:        'boolean',
+        default:     ( ! process.env['LOTTE_NO_SERVER']),
+        description: 'start a HTTP server for IPC'
+      }).
+      option('address', {
+        alias:       'a',
+        default:     '127.0.0.1',
+        type:        'string',
+        description: 'IP address for the HTTP server to bind to'
+      }).
+      option('port', {
+        alias:       'p',
+        default:     3838,
+        type:        'number',
+        description: 'port for HTTP server to listen on'
+      }).
       option('phantom', {
         type:        'string',
         default:     'phantomjs',
@@ -137,9 +154,14 @@ function main(options) {
     collect(options, function(files) {
       glob(files,   { mode: 'include', pattern: options.include }, function(files) {
         glob(files, { mode: 'exclude', pattern: options.exclude }, function(files) {
+          var server = require('../lib/server');
           files.sort(require('naturalsort').compare);
           options.files = files;
-          require('../lib/lotte.js').process(options, function(e, code) {
+          if (options['server']) {
+            server.listen(options.port, options.address);
+          }
+          require('../lib/lotte').process(options, function(e, code) {
+            server.close();
             process.exit(e ? 1 << 8 : code);
           });
         });
