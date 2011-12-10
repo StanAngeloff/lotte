@@ -150,7 +150,7 @@ function main(options) {
 
 function verifyPhantomBinary(options, resume) {
   if ( ! options['verify']) {
-    options.phantom_version = false;
+    options.phantomVersion = false;
     return resume();
   }
   var command = options.phantom + ' --version';
@@ -168,10 +168,10 @@ function verifyPhantomBinary(options, resume) {
       console.error("Could not parse version string '%s'", ('' + stdout).trim());
       process.exit(1 << 5);
     }
-    options.phantom_version = groups[0];
+    options.phantomVersion = groups[0];
     var semver = require('semver');
-    if ( ! semver.satisfies(options.phantom_version, PHANTOMJS_VERSION)) {
-      console.error("PhantomJS version '%s' does not meet requirements '%s'.", options.phantom_version, PHANTOMJS_VERSION);
+    if ( ! semver.satisfies(options.phantomVersion, PHANTOMJS_VERSION)) {
+      console.error("PhantomJS version '%s' does not meet requirements '%s'.", options.phantomVersion, PHANTOMJS_VERSION);
       process.exit(1 << 6);
     }
     resume();
