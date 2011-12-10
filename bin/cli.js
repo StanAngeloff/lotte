@@ -33,7 +33,7 @@ var defaults = optimist.
       option('include', {
         alias:       'I',
         type:        'string',
-        default:     '**/lotte_*.js',
+        default:     '**/lotte_*.{coffee,js}',
         description: 'glob pattern to match files in PATH'
       }).
       option('exclude', {
