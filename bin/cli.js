@@ -126,7 +126,7 @@ function load(options, file, block) {
     for (i = 0; i < symbols.length; i ++) {
       context[symbols[i]] = global[symbols[i]];
     }
-    symbols = ['on', 'once', 'off', 'notify'];
+    symbols = ['on', 'once', 'off', 'message'];
     for (i = 0; i < symbols.length; i ++) {
       context[symbols[i]] = events[symbols[i]];
     }
