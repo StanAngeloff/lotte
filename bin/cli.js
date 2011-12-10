@@ -165,9 +165,14 @@ function main(options) {
           if (options['server']) {
             server.listen(options.port, options.address);
           }
-          require('../lib/lotte').process(options, function(e, code) {
-            server.close();
-            process.exit(e ? 1 << 8 : code);
+          events.message('start', [options], function() {
+            require('../lib/lotte').process(options, function(e, code) {
+              code = (e ? 1 << 8 : code);
+              events.message('exit', [code], function() {
+                server.close();
+                process.exit(code);
+              });
+            });
           });
         });
       });
