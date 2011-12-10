@@ -4,7 +4,8 @@ const PHANTOMJS_VERSION = '~1.3.0';
 
 var path     = require('path'),
     optimist = require('optimist'),
-    console  = require('../lib/console');
+    console  = require('../lib/console'),
+    events   = require('../lib/events');
 
 var defaults = optimist.
       usage('Usage: $0 [OPTION...] PATH\n\nCommand-line arguments are evaluated before any included files.\n\nReport issues at https://github.com/StanAngeloff/lotte/issues.').
@@ -120,10 +121,14 @@ function load(options, file, block) {
     if (e) {
       return block(e);
     }
-    var context = {};
-        symbols = ['Buffer', 'console', 'process', 'require', 'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'];
-    for (var i = 0; i < symbols.length; i ++) {
+    var context = {},
+        i, symbols = ['Buffer', 'console', 'process', 'require', 'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'];
+    for (i = 0; i < symbols.length; i ++) {
       context[symbols[i]] = global[symbols[i]];
+    }
+    symbols = ['on', 'once', 'off', 'notify'];
+    for (i = 0; i < symbols.length; i ++) {
+      context[symbols[i]] = events[symbols[i]];
     }
     for (var key in options) {
       if (Object.prototype.hasOwnProperty.call(options, key)) {

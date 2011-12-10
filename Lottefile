@@ -1,3 +1,7 @@
-path       = 'test'
-include    = '**/test_*.coffee'
-timeout    = 5000
+path    = 'test'
+include = '**/test_*.coffee'
+timeout = 5000
+
+on('hello', function(message, resume) {
+  resume(message + '!');
+});
