@@ -121,8 +121,9 @@ function load(options, file, block) {
     if (e) {
       return block(e);
     }
-    var context = {},
-        i, symbols = ['Buffer', 'console', 'process', 'require', 'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'];
+    var context = {}, i,
+        symbols = ['Buffer', 'console', 'process', 'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'];
+    context['require'] = require;
     for (i = 0; i < symbols.length; i ++) {
       context[symbols[i]] = global[symbols[i]];
     }
