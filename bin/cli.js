@@ -171,7 +171,7 @@ function verifyPhantomBinary(options, resume) {
     options.phantomVersion = groups[0];
     var semver = require('semver');
     if ( ! semver.satisfies(options.phantomVersion, PHANTOMJS_VERSION)) {
-      console.error("PhantomJS version '%s' does not meet requirements '%s'.", options.phantomVersion, PHANTOMJS_VERSION);
+      console.error("PhantomJS version '%s' does not meet requirement '%s'.", options.phantomVersion, PHANTOMJS_VERSION);
       process.exit(1 << 6);
     }
     resume();
