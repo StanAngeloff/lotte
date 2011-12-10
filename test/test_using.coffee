@@ -1,7 +1,7 @@
 @base  'http://' + phantom.args[0] + ':' + phantom.args[1]
 @title 'localhost.localdomain'
 
-@open '/', '@using(..)', ->
+@open '/', 'using(..)', ->
   @describe 'should export variables across environments', ->
     value = 'argument names can be omitted'
     @assert.equal value, @page.evaluate @using { value }, -> value
