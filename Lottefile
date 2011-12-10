@@ -1,7 +1,6 @@
-path    = 'test'
-include = '**/test_*.coffee'
-timeout = 5000
+@path    = 'test'
+@include = '**/test_*.coffee'
+@timeout = 5000
 
-on('hello', function(value, resume) {
-  resume(value + '!');
-});
+@on 'hello', (value, resume) ->
+  resume "#{value}!"

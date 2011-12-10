@@ -117,7 +117,7 @@ path.exists(lotteFile, function(exists) {
 });
 
 function load(options, file, block) {
-  require('fs').readFile(file, 'utf8', function(e, code) {
+  require('../lib/utils').toJavaScript(options, file, function(e, code) {
     if (e) {
       return block(e);
     }
