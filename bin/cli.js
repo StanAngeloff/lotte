@@ -86,29 +86,50 @@ defaults.path = path.resolve(defaults.path || process.env['LOTTE_PATH'] || proce
 var lotteFile = path.join(defaults.path, defaults.lottefile);
 path.exists(lotteFile, function(exists) {
   if (exists) {
-    var fs = require('fs');
-    fs.readFile(lotteFile, 'utf8', function(e, code) {
+    load(defaults, lotteFile, function(e, options) {
       if (e) {
         console.error.exception(e);
         process.exit(1 << 1);
       }
-      var vm       = require('vm'),
-          previous = defaults.path;
-      try {
-        vm.runInNewContext(code, defaults, lotteFile);
-        if (defaults.path !== previous) {
-          defaults.path = path.resolve(previous, defaults.path);
-        }
-      } catch (e) {
-        console.error.exception(e);
-        process.exit(1 << 2);
-      }
-      main(defaults);
+      main(options);
     });
   } else {
     main(defaults);
   }
 });
+
+function load(options, file, block) {
+  require('fs').readFile(file, 'utf8', function(e, code) {
+    if (e) {
+      return block(e);
+    }
+    var context = {};
+        symbols = ['Buffer', 'console', 'process', 'require', 'setTimeout', 'clearTimeout', 'setInterval', 'clearInterval'];
+    for (var i = 0; i < symbols.length; i ++) {
+      context[symbols[i]] = global[symbols[i]];
+    }
+    for (var key in options) {
+      if (Object.prototype.hasOwnProperty.call(options, key)) {
+        context[key] = options[key];
+      }
+    }
+    try {
+      require('vm').runInNewContext(code, context, file);
+      if (context.path !== options.path) {
+        context.path = path.resolve(options.path, context.path);
+      }
+    } catch (e) {
+      console.error.exception(e);
+      process.exit(1 << 2);
+    }
+    for (var key in options) {
+      if (Object.prototype.hasOwnProperty.call(options, key)) {
+        options[key] = context[key];
+      }
+    }
+    block(null, options);
+  });
+};
 
 function main(options) {
   options || (options = {});
