@@ -132,9 +132,8 @@ function verifyPhantomBinary(options, resume) {
     options.phantom_version = false;
     return resume();
   }
-  var childProcess = require('child_process'),
-      command      = options.phantom + ' --version';
-  childProcess.exec(command, function(e, stdout, stderr) {
+  var command = options.phantom + ' --version';
+  require('child_process').exec(command, function(e, stdout, stderr) {
     if (e) {
       console.error.exception(e);
       process.exit(1 << 3);
