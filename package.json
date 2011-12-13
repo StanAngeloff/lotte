@@ -20,7 +20,8 @@
     "minimatch":   "~0.0.4",
     "naturalsort": "~0.0.1",
     "optimist":    "~0.3.0",
-    "semver":      "~1.0.12"
+    "semver":      "~1.0.12",
+    "tmp":         "~0.0.12"
   },
   "devDependencies": {
     "express": "~2.5.0"
