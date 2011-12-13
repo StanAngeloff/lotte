@@ -80,11 +80,6 @@ var defaults = optimist.
         default:     'coffee',
         description: 'executable for CofeeScript'
       }).
-      option('mktemp', {
-        type:        'string',
-        default:     'mktemp',
-        description: 'executable to create unique temporary files'
-      }).
       argv;
 
 if (defaults.help) {

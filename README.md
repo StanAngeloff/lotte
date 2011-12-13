@@ -82,7 +82,6 @@ Options:
   --verify          verify PhantomJS version (expected ~1.3.0)   [boolean]  [default: true]
   --phantom         executable for PhantomJS                     [string]   [default: "phantomjs"]
   --coffee          executable for CofeeScript                   [string]   [default: "coffee"]
-  --mktemp          executable to create unique temporary files  [string]   [default: "mktemp"]
 ```
 
 There are four key options you would want to customise while the rest should work with their defaults.
@@ -548,12 +547,11 @@ FAQs
       @success()
     ```
 
-- **Q**: I don't have `phantomjs`, `coffee`, and/or `mktemp` on `$PATH`.
+- **Q**: I don't have `phantomjs` and/or `coffee` on `$PATH`.
 
-    **A**: See `lotte --help` for information on how to specify a path to the missing binary. `mktemp` should be installed by default on Mac OS and most Linux distributions as part of GNU [coreutils][coreutils].
+    **A**: See `lotte --help` for information on how to specify a path to the missing binary.
 
   [webpage]:   http://code.google.com/p/phantomjs/wiki/Interface#'_WebPage_'_Object
-  [coreutils]: http://www.gnu.org/software/coreutils/
 
 Contributing
 ------------
