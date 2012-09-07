@@ -1,5 +1,5 @@
 { "name":        "lotte",
-  "version":     "0.1.2-2",
+  "version":     "0.2",
   "description": "Headless, automated browser testing using PhantomJS",
   "homepage":    "https://github.com/StanAngeloff/lotte",
   "bugs":        "https://github.com/StanAngeloff/lotte/issues",

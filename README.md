@@ -560,6 +560,17 @@ The goal of this project is to provide an awesome tool for developers to test th
 
 Commit and code reviews, ideas and documentation improvements are welcomed.
 
+Changelog
+---------
+
+### 0.2
+
+* [74aee9c](https://github.com/StanAngeloff/lotte/commit/74aee9c) - Drop 'findit' and use 'walkdir', support Windows.
+* [4ab5679](https://github.com/StanAngeloff/lotte/commit/4ab5679) - Bump dependencies versions in package.json and address deprecations.
+* [8a49077](https://github.com/StanAngeloff/lotte/commit/8a49077) - Address deprecation "`path.exists` is now called `fs.exists`."
+* [1189ae6](https://github.com/StanAngeloff/lotte/commit/1189ae6) - Add (verified) support for PhantomJS 1.6.x.
+* [4c9d441](https://github.com/StanAngeloff/lotte/commit/4c9d441) - Emit 'compile' to allow hooks to modify the code before it's compiled.
+
 ### Copyright
 
 > Copyright (c) 2011 Stan Angeloff. See [LICENSE.md](https://github.com/StanAngeloff/lotte/blob/master/LICENSE.md) for details.
