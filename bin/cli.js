@@ -2,7 +2,8 @@
 
 const PHANTOMJS_VERSION = '~1.3.0 || ~1.4.0 || ~1.5.0 || ~1.6.0';
 
-var path     = require('path'),
+var fs       = require('fs'),
+    path     = require('path'),
     optimist = require('optimist'),
     console  = require('../lib/console'),
     events   = require('../lib/events');
@@ -97,7 +98,7 @@ if (process.argv.indexOf('--') < 0 && defaults._.length) {
 defaults.path = path.resolve(defaults.path || process.env['LOTTE_PATH'] || process.cwd());
 
 var lotteFile = path.join(defaults.path, defaults.lottefile);
-path.exists(lotteFile, function(exists) {
+fs.exists(lotteFile, function(exists) {
   if (exists) {
     load(defaults, lotteFile, function(e, options) {
       if (e) {
@@ -208,7 +209,7 @@ function verifyPhantomBinary(options, resume) {
 
 function collect(options, resume) {
   var absolute = path.resolve(options.path);
-  path.exists(absolute, function(exists) {
+  fs.exists(absolute, function(exists) {
     if ( ! exists) {
       console.error("Could not resolve '%s'.", absolute);
       process.exit(1 << 7);
