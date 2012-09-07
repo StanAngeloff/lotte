@@ -88,7 +88,7 @@ if (defaults.help) {
   process.exit(0);
 }
 if (defaults.version) {
-  console.log('%s %s', defaults.$0, '0.2.0-1');
+  console.log('%s %s', defaults.$0, '0.2.1');
   process.exit(0);
 }
 
@@ -154,8 +154,20 @@ function main(options) {
   options || (options = {});
   verifyPhantomBinary(options, function() {
     collect(options, function(files) {
+      if ( ! files.length) {
+        console.warn("No files were found in '%s'.", options.path);
+        process.exit(0);
+      }
       glob(files,   { mode: 'include', pattern: options.include }, function(files) {
+        if ( ! files.length) {
+          console.warn("Files were found in '%s', but none matched your include pattern '%s'.", options.path, options.include);
+          process.exit(0);
+        }
         glob(files, { mode: 'exclude', pattern: options.exclude }, function(files) {
+          if ( ! files.length) {
+            console.warn("Files were found in '%s', but all matched your exclude pattern '%s'.", options.path, options.exclude);
+            process.exit(0);
+          }
           var server = require('../lib/server');
           files.sort(require('naturalsort').compare);
           options.files = files;
