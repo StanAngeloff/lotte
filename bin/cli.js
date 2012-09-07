@@ -88,7 +88,7 @@ if (defaults.help) {
   process.exit(0);
 }
 if (defaults.version) {
-  console.log('%s %s', defaults.$0, '0.2');
+  console.log('%s %s', defaults.$0, '0.2.0-1');
   process.exit(0);
 }
 
