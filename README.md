@@ -19,9 +19,9 @@ This project is still highly experimental. Using it may cause your computer to b
 Prerequisites
 -------------
 
-- [node.js][nodejs] **>=0.4.10**
-- [npm][npm] **~1.0**
-- [PhantomJS][phantom] **~1.3.0**
+- [node.js][nodejs] **>=0.8**
+- [npm][npm] **>=1.0**
+- [PhantomJS][phantom] **>=1.3.0 <=1.6.x**
 
   [npm]:       http://npmjs.org/
   [nodejs]:    http://nodejs.org/
