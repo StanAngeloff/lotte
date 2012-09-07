@@ -214,15 +214,15 @@ function collect(options, resume) {
       console.error("Could not resolve '%s'.", absolute);
       process.exit(1 << 7);
     }
-    var find   = require('findit').find(options.path),
+    var walk   = require('walkdir')(options.path),
         result = [];
-    find.on('file', function(file) {
+    walk.on('file', function(file) {
       result.push(file);
     });
-    find.on('error', function(e) {
+    walk.on('error', function(e) {
       console.warn(e.toString().trim());
     });
-    find.on('end', function() {
+    walk.on('end', function() {
       resume(result);
     });
   });

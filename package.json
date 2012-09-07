@@ -16,12 +16,12 @@
     "url":  "https://github.com/StanAngeloff/lotte"
   },
   "dependencies": {
-    "findit":      "~0.1.2",
     "minimatch":   "~0.2.6",
     "naturalsort": "~0.0.1",
     "optimist":    "~0.3.4",
     "semver":      "~1.0.14",
-    "tmp":         "~0.0.14"
+    "tmp":         "~0.0.14",
+    "walkdir":     "~0.0.4"
   },
   "devDependencies": {
     "express": "~3.0.0"
