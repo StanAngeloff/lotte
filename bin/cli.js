@@ -59,6 +59,11 @@ var defaults = optimist.
         default:     ( ! process.env['LOTTE_NO_SERVER']),
         description: 'start a HTTP server for IPC'
       }).
+      option('console', {
+        type:        'boolean',
+        default:     ( !! process.env['LOTTE_CONSOLE']),
+        description: 'display console messages from web pages'
+      }).
       option('address', {
         alias:       'a',
         default:     '127.0.0.1',
