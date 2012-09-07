@@ -563,13 +563,13 @@ Commit and code reviews, ideas and documentation improvements are welcomed.
 Changelog
 ---------
 
-### 0.2
-
-* [74aee9c](https://github.com/StanAngeloff/lotte/commit/74aee9c) - Drop 'findit' and use 'walkdir', support Windows.
-* [4ab5679](https://github.com/StanAngeloff/lotte/commit/4ab5679) - Bump dependencies versions in package.json and address deprecations.
-* [8a49077](https://github.com/StanAngeloff/lotte/commit/8a49077) - Address deprecation "`path.exists` is now called `fs.exists`."
-* [1189ae6](https://github.com/StanAngeloff/lotte/commit/1189ae6) - Add (verified) support for PhantomJS 1.6.x.
-* [4c9d441](https://github.com/StanAngeloff/lotte/commit/4c9d441) - Emit 'compile' to allow hooks to modify the code before it's compiled.
+- [0.1.2](https://github.com/StanAngeloff/lotte/compare/0.1.1...0.1.2)
+- [0.1.2-1](https://github.com/StanAngeloff/lotte/compare/0.1.2...0.1.2-1)
+- [0.1.2-2](https://github.com/StanAngeloff/lotte/compare/0.1.2-1...0.1.2-2)
+- [0.2.0](https://github.com/StanAngeloff/lotte/compare/0.1.2-2...0.2.0)
+- [0.2.0-1](https://github.com/StanAngeloff/lotte/compare/0.2.0...0.2.0-1)
+- [0.2.1](https://github.com/StanAngeloff/lotte/compare/0.2.0-1...0.2.1)
+- [0.2.2](https://github.com/StanAngeloff/lotte/compare/0.2.1...0.2.2)
 
 ### Copyright
 
