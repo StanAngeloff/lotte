@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var express = require('express'),
-    app     = express.createServer();
+    app     = express();
 
 app.configure(function(){
   app.use(express.static(require('path').join(__dirname, 'public')));
