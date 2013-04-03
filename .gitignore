@@ -3,5 +3,6 @@
 lotte-*.tgz
 node_modules
 npm-*.log
+phantomjs-*-*-*/
 README.html
 Watchrfile
