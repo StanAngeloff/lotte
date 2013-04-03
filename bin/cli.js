@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const PHANTOMJS_VERSION = '~1.3.0 || ~1.4.0 || ~1.5.0 || ~1.6.0 || ~1.7.0';
+const PHANTOMJS_VERSION = '<2.0.0';
 
 var fs       = require('fs'),
     path     = require('path'),

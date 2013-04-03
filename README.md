@@ -21,7 +21,7 @@ Prerequisites
 
 - [node.js][nodejs] **>=0.8**
 - [npm][npm] **>=1.0**
-- [PhantomJS][phantom] **>=1.3.0 <=1.6.x**
+- [PhantomJS][phantom] **<2.0.0**
 
   [npm]:       http://npmjs.org/
   [nodejs]:    http://nodejs.org/
@@ -79,7 +79,7 @@ Options:
   --include, -I     glob pattern to match files in PATH          [string]   [default: "**/lotte_*.js"]
   --exclude, -E     glob pattern to remove included files        [string]
   --lottefile, -f   look for 'lottefile' in PATH                 [string]   [default: "Lottefile"]
-  --verify          verify PhantomJS version (expected ~1.3.0)   [boolean]  [default: true]
+  --verify          verify PhantomJS version (expected <2.0.0)   [boolean]  [default: true]
   --phantom         executable for PhantomJS                     [string]   [default: "phantomjs"]
   --coffee          executable for CofeeScript                   [string]   [default: "coffee"]
 ```
