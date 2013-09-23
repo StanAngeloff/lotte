@@ -579,6 +579,7 @@ Changelog
 - [0.2.2-1](https://github.com/StanAngeloff/lotte/compare/0.2.2...0.2.2-1)
 - [0.2.2-2](https://github.com/StanAngeloff/lotte/compare/0.2.2-1...0.2.2-2)
 - [0.2.2-3](https://github.com/StanAngeloff/lotte/compare/0.2.2-2...0.2.2-3)
+- [0.2.3](https://github.com/StanAngeloff/lotte/compare/0.2.2-3...0.2.3)
 
 ### Copyright
 

@@ -91,7 +91,7 @@ if (defaults.help) {
   process.exit(0);
 }
 if (defaults.version) {
-  console.log('%s %s', defaults.$0, '0.2.2-3');
+  console.log('%s %s', defaults.$0, '0.2.3');
   process.exit(0);
 }
 
