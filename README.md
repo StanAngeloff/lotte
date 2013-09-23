@@ -80,8 +80,8 @@ Options:
   --exclude, -E     glob pattern to remove included files        [string]
   --lottefile, -f   look for 'lottefile' in PATH                 [string]   [default: "Lottefile"]
   --verify          verify PhantomJS version (expected <2.0.0)   [boolean]  [default: true]
-  --phantom         executable for PhantomJS                     [string]   [default: "phantomjs"]
-  --coffee          executable for CofeeScript                   [string]   [default: "coffee"]
+  --phantom         executable for PhantomJS                     [string]
+  --coffee          executable for CofeeScript                   [string]
 ```
 
 There are four key options you would want to customise while the rest should work with their defaults.
@@ -551,7 +551,13 @@ FAQs
 
     **A**: See `lotte --help` for information on how to specify a path to the missing binary.
 
+    Optionally, you can install the corresponding [NPM] modules [coffee-script] and [phantomjs] in your project.
+
+
   [webpage]:   http://code.google.com/p/phantomjs/wiki/Interface#'_WebPage_'_Object
+  [NPM]: https://npmjs.org/
+  [coffee-script]: https://npmjs.org/package/coffee-script
+  [phantomjs]: https://npmjs.org/package/phantomjs
 
 Contributing
 ------------
