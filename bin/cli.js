@@ -82,7 +82,6 @@ var defaults = optimist.
       }).
       option('coffee', {
         type:        'string',
-        default:     'coffee',
         description: 'executable for CofeeScript'
       }).
       argv;
