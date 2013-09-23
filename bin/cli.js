@@ -78,7 +78,6 @@ var defaults = optimist.
       }).
       option('phantom', {
         type:        'string',
-        default:     'phantomjs',
         description: 'executable for PhantomJS'
       }).
       option('coffee', {
@@ -155,8 +154,17 @@ function load(options, file, block) {
   });
 };
 
+function getPhantomBinary() {
+  try {
+    return require('phantomjs').path;
+  } catch (e) {
+    return 'phantomjs';
+  }
+};
+
 function main(options) {
   options || (options = {});
+  options.phantom || (options.phantom = getPhantomBinary());
   verifyPhantomBinary(options, function() {
     collect(options, function(files) {
       if ( ! files.length) {
