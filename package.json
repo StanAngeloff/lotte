@@ -24,7 +24,7 @@
     "walkdir":     "~0.0.4"
   },
   "devDependencies": {
-    "express": "~3.0.0"
+    "express": "~4.17.1"
   },
   "engines": {
     "node": ">=0.8"
